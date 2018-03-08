@@ -14,8 +14,33 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls import url
+from django.contrib.auth.views import login, logout
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns, static
 from django.urls import path
+
+from datetime import datetime
+
+from probegin_test.forms import CustomAuthenticationForm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^login$', login,
+        {
+            'template_name': 'probegin_test/login.html',
+            'authentication_form': CustomAuthenticationForm,
+            'extra_context':
+                {
+                    'title': 'Login, please',
+                    'year': datetime.now().year,
+                }
+        }, name='login'),
+    url(r'^logout$', logout,
+        {
+            'next_page': '/login'
+        }, name='logout'),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,0 +1,19 @@
+{% load staticfiles %}
+<div class="container-fluid">
+  <div class="col-xs-12">
+    <nav class="navbar navbar-default">
+        <div class="row">
+            <div class="col-xs-6" style="text-align: left; margin-top: 10px;">
+                <a href="/" class="btn btn-inverse logo-style">
+                    <img src="{% static 'probegin_test/logo.png' %}">
+                </a>
+            </div>
+            <div class="col-xs-6" style="text-align: right;">
+                <div class="btn-group">
+                  <a href="{% url 'login' %}" class="btn btn-default btn-rectangle" style="height: 64px;"><span class="glyphicon glyphicon-log-in" style="font-size: 25px;"></span></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+  </div>
+</div>
