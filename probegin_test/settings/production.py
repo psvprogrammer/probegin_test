@@ -27,6 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['probegin-test.herokuapp.com']
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'psv.programmer@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'password')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'Serhii Petrushkevych <admin@probegin-test.com>'
 
 # Application definition
 
@@ -124,15 +130,19 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'probegin_test', 'static').replace('\\', '/')
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-#
-# # List of finder classes that know how to find static files in
-# # various locations.
-# STATICFILES_FINDERS = (
-#     'django.contrib.staticfiles.finders.FileSystemFinder',
-#     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#     # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
-# )
+
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/'
+
+# heroku specific options
+CORS_REPLACE_HTTPS_REFERER = True
+HOST_SCHEME = 'https://'
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_HSTS_SECONDS = 1000000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_FRAME_DENY = True

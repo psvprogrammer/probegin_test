@@ -1,0 +1,38 @@
+{% extends "probegin_test/master.html" %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-center">Post list</h1>
+        {% if blog %}
+        <h4 class="text-center"><strong>Blog {{ blog }}</strong></h4>
+        {% endif %}
+        <br/>
+        {% for post in post_list %}
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <strong>{{ post.title }}</strong>
+                <br/>
+                <small><a href="{% url 'blog-post-list' post.blog.pk %}">Blog: {{ post.blog }}</a></small>
+
+                {% for category in post.blog.categories.all %}
+                <a href="{% url 'category-blog-list' category.pk %}"><span class="label label-info">{{ category.name }}</span></a>
+                {% endfor %}
+
+            </div>
+            <div class="panel-body">{{ post.content }}</div>
+            <div class="panel-footer text-right">
+                <a href="{% url 'post-comments' post.pk %}" class="btn btn-primary btn-rectangle">Comments ({{ post.comments.count }})</a>
+                <a href="{% url 'post-update' post.pk %}" class="btn btn-info btn-rectangle">Edit</a>
+                <a href="{% url 'post-delete' post.pk %}" class="btn btn-danger btn-rectangle">Delete</a>
+            </div>
+        </div>
+        {% endfor %}
+{#        <br/>#}
+{#        <ul>#}
+{#            {% for post in post_list %}#}
+{#                <li data-toggle="tooltip" title="go to comments">#}
+{#                    <a href="{% url 'post-update' post.pk %}">{{ post }}</a>#}
+{#                </li>#}
+{#            {% endfor %}#}
+{#        </ul>#}
+{% endblock %}

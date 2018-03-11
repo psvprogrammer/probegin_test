@@ -1,0 +1,14 @@
+{% extends "probegin_test/master.html" %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-center">All blogs categories</h1>
+        <br/>
+        <ul>
+            {% for category in category_list %}
+                <li data-toggle="tooltip" title="go to blogs">
+                    <a href="{% url 'category-blog-list' category.pk %}">{{ category }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+{% endblock %}

@@ -1,5 +1,14 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import (
+    AuthenticationForm,
+    UserCreationForm,
+)
+from django.forms import ModelForm
+from probegin_test.models import Comment
+
+
+User = get_user_model()
 
 
 class CustomAuthenticationForm(AuthenticationForm):
@@ -12,3 +21,18 @@ class CustomAuthenticationForm(AuthenticationForm):
                                widget=forms.PasswordInput({
                                    'class': 'form-control',
                                    'placeholder': 'password'}))
+
+
+class SignUpForm(UserCreationForm):
+    email = forms.EmailField(max_length=254, required=True,
+                             help_text='* Inform a valid email address.')
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2',)
+
+
+class CommentForm(ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content']

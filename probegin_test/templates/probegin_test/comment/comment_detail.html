@@ -1,0 +1,23 @@
+{% extends "probegin_test/master.html" %}
+
+{% block content %}
+    <div class="container">
+        <h2>Blog details</h2>
+        <br/>
+        <h6>Title: {{ blog.title }}</h6>
+        <h6>Author: {{ blog.author }}</h6>
+        <h6>Description: {{ blog.description }}</h6>
+        <h6>Categories: {{ categories.count }}</h6>
+        <ul>
+            {% for category in categories %}
+                <li>{{ category.name }}</li>
+            {% endfor %}
+        </ul>
+        <h6>Posts: {{ posts.count }}</h6>
+        <ul>
+            {% for post in posts %}
+                <li>{{ post.title }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

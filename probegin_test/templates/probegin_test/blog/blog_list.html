@@ -1,0 +1,52 @@
+{% extends "probegin_test/master.html" %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-center">All blogs list</h1>
+        <br/>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Details</th>
+                    <th>Title</th>
+                    <th>Posts</th>
+                    <th>Author</th>
+                    <th>Categories</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for blog in blog_list %}
+                <tr>
+                    <td data-toggle="tooltip" title="get the details">
+                        <a href="{% url 'blog-detail' pk=blog.pk %}">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                    <td data-toggle="tooltip" title="go to posts from this blog">
+                        <a href="{% url 'blog-post-list' blog.pk %}">{{ blog.title }}</a>
+                    </td>
+                    <td data-toggle="tooltip" title="go to posts from this blog">
+                        {{ blog.posts.count }}
+                    </td>
+                    <td data-toggle="tooltip" title="get all blog of this author">
+                        <a href="{% url 'author-blog-list' blog.author.pk %}">{{ blog.author }}</a>
+                    </td>
+                    <td>Categories</td>
+                    <td>
+                        <a href="{% url 'blog-update' pk=blog.pk %}">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'blog-delete' pk=blog.pk %}">
+                            <span class="glyphicon glyphicon-trash" style="color: lightcoral;"></span>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "probegin_test/master.html" %}
+
+{% block content %}
+    <form action="{% url 'comment-update' comment.post.pk comment.pk %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" />
+    </form>
+{% endblock %}
