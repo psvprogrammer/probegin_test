@@ -33,7 +33,13 @@
                     <td data-toggle="tooltip" title="get all blog of this author">
                         <a href="{% url 'author-blog-list' blog.author.pk %}">{{ blog.author }}</a>
                     </td>
-                    <td>Categories</td>
+                    <td>
+                        {% for category in blog.categories.all %}
+                        <a href="{% url 'category-blog-list' category.pk %}" data-toggle="tooltip" title="all blogs from category">
+                            <span class="label label-info">{{ category.name }}</span>
+                        </a>
+                        {% endfor %}
+                    </td>
                     <td>
                         <a href="{% url 'blog-update' pk=blog.pk %}">
                             <span class="glyphicon glyphicon-pencil"></span>

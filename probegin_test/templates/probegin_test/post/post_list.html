@@ -15,7 +15,9 @@
                 <small><a href="{% url 'blog-post-list' post.blog.pk %}">Blog: {{ post.blog }}</a></small>
 
                 {% for category in post.blog.categories.all %}
-                <a href="{% url 'category-blog-list' category.pk %}"><span class="label label-info">{{ category.name }}</span></a>
+                <a href="{% url 'category-blog-list' category.pk %}" data-toggle="tooltip" title="all blogs from category">
+                    <span class="label label-info">{{ category.name }}</span>
+                </a>
                 {% endfor %}
 
             </div>
