@@ -5,3 +5,8 @@ psycopg2==2.7.3.2
 pytz==2017.3
 whitenoise==3.3.1
 djangoajax==2.4
+factory-boy==2.10.0
+Faker==0.8.11
+python-dateutil==2.7.0
+six==1.11.0
+text-unidecode==1.2

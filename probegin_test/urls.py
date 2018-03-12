@@ -18,7 +18,7 @@ from django.conf import settings
 from django.conf.urls import url
 from django.contrib.auth.views import login, logout
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns, static
-from django.urls import path
+from django.urls import path, re_path
 from django.views.generic import TemplateView
 
 from datetime import datetime
@@ -29,28 +29,6 @@ from probegin_test.forms import CustomAuthenticationForm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # url(r'^login$', login,
-    #     {
-    #         'template_name': 'probegin_test/login.html',
-    #         'authentication_form': CustomAuthenticationForm,
-    #         'extra_context':
-    #             {
-    #                 'title': 'Login, please',
-    #                 'year': datetime.now().year,
-    #             }
-    #     }, name='login'),
-    # url(r'^logout$', logout,
-    #     {
-    #         'next_page': '/login'
-    #     }, name='logout'),
-    #
-    # url(r'^sign-up$', views.SignUp.as_view(), name='sign_up'),
-    # url(r'^account_activation_sent/$',
-    #     TemplateView.as_view(template_name='probegin_test/account_activation_sent.html'),
-    #     name='account_activation_sent'),
-    # url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-    #     views.activate, name='activate'),
-
     path('login/', login,
         {
             'template_name': 'probegin_test/login.html',
