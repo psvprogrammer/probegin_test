@@ -15,19 +15,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf import settings
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib.auth.views import login, logout
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns, static
 from django.urls import path
 from django.views.generic import TemplateView
+from rest_framework_jwt.views import obtain_jwt_token
 
 from datetime import datetime
 
 from probegin_test import views
 from probegin_test.forms import CustomAuthenticationForm
+from probegin_test.api.urls import router, urlpatterns
 
 
 urlpatterns = [
+    url(r'^api-token-auth/', obtain_jwt_token),
+    url(r'^api/', include(router.urls)),
+    url(r'^api/', include(urlpatterns)),
+
     path('admin/', admin.site.urls),
     path('login/', login,
         {

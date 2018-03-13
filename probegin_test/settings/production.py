@@ -27,13 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['probegin-test.herokuapp.com']
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'psv.programmer@gmail.com'
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'password')
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'Serhii Petrushkevych <admin@probegin-test.com>'
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # 'rest_framework',
     'probegin_test',
 ]
 
@@ -135,6 +129,25 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'probegin_test', 'static').replace('\\', '/
 
 LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'psv.programmer@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'password')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'Serhii Petrushkevych <admin@probegin-test.com>'
+
+# # Django REST Framework
+# REST_FRAMEWORK = {
+#     'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.IsAuthenticated',
+#     ),
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+#         'rest_framework.authentication.SessionAuthentication',
+#         'rest_framework.authentication.BasicAuthentication',
+#     ),
+# }
 
 # heroku specific options
 CORS_REPLACE_HTTPS_REFERER = True
