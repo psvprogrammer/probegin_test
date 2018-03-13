@@ -86,7 +86,7 @@ class UserActivateView(APIView):
                             status=status.HTTP_400_BAD_REQUEST)
 
 
-class UserViewSet(viewsets.ModelViewSet):
+class UserViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin, mixins.ListModelMixin):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
