@@ -55,28 +55,28 @@ class UserAuthSerializer(serializers.BaseSerializer):
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'email')
+        fields = ('id', 'username', 'email')
 
 
 class BlogCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogCategory
-        fields = ('name',)
+        fields = ('id', 'name')
 
 
 class BlogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
-        fields = ('author', 'title', 'description', 'categories')
+        fields = ('id', 'author', 'title', 'description', 'categories')
 
     author = UserSerializer(read_only=True)
-    categories = BlogCategorySerializer
+    categories = BlogCategorySerializer(many=True)
 
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ('author', 'blog', 'title', 'content')
+        fields = ('id', 'author', 'blog', 'title', 'content')
 
     author = UserSerializer(read_only=True)
     blog = BlogSerializer
@@ -85,7 +85,7 @@ class PostSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ('author', 'post', 'content')
+        fields = ('id', 'author', 'post', 'content')
 
     author = UserSerializer(read_only=True)
     post = PostSerializer
